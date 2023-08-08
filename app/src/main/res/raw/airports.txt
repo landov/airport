@@ -1,0 +1,3 @@
+LHNK;Nagykanizsa;3mk/2nm SW Nagykanizsa;N0462630;E0165705;142;Nagykanizsa INFO;135.7;LH,RH;SR-SS;false;false;//mpszel.idokep.hu/3efc97583c254cc1e67d2cd3b9f69d4c
+LHSM;Sármellék;1km/0.5nm SSW Sármellék;N0464111;E0170933;124;Balaton INFO/TWR;134.575:135.7;16 RH, 34 LH, 1500 ft AGL;1000-1900 LT naponta/daily:1000-2100 LT szombat/Saturday;true;true;
+LHZA;Zalaegerszeg-Andráshida;6km/3nm NW Zalaegerszeg;N0465303;E0164721;196;Zalaegerszeg repülőtér (Unicom);133.425;17/35 LH,RH;0800-SS LT;false;false;//mpszel.idokep.hu/176712a734437dd6cf594c93b76beba5

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/airportListFragment">
+    <fragment
+        android:id="@+id/airportListFragment"
+        android:name="hu.landov.airport.airportlist.AirportListFragment"
+        android:label="fragment_airport_list"
+        tools:layout="@layout/fragment_airport_list" >
+        <action
+            android:id="@+id/action_airportListFragment_to_airportDetailsFragment"
+            app:destination="@id/airportDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/airportDetailsFragment"
+        android:name="hu.landov.airport.airportdetails.AirportDetailsFragment"
+        android:label="AirportDetailsFragment" >
+        <argument
+            android:name="airport"
+            app:argType="hu.landov.airport.common.domain.Airport" />
+    </fragment>
+</navigation>
