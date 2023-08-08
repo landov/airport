@@ -18,7 +18,7 @@ import java.util.*
 //TODO Inject Context or Dao/Repo
 class SplashViewModel(val app: Application) : AndroidViewModel(app) {
 
-    val repository = (app as AirportApplication).airportRepository
+    val repository = (app as AirportApplication).getAirportRepository()
     private var _proceed = MutableLiveData<Boolean>(false)
     val proceed : LiveData<Boolean>
     get() = _proceed

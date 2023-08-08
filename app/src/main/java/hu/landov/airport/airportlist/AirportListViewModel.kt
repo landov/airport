@@ -6,9 +6,8 @@ import hu.landov.airport.AirportApplication
 
 class AirportListViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val repo = (app as AirportApplication).airportRepository
+    private val repo = (app as AirportApplication).getAirportRepository()
 
-    //TODO belekeveredtem
-    val airportEntities = repo.getAirports()
+    val airports = repo.getAirports()
 
 }

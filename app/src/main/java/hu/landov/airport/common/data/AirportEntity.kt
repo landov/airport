@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "airport")
 
-@Parcelize
+
 data class AirportEntity(
     @PrimaryKey
     val code: String,
@@ -29,7 +29,7 @@ data class AirportEntity(
     val ifr: Boolean,
     @ColumnInfo(name = "wind_link")
     val windLink: String
-) : Parcelable{
+) {
     companion object{
         fun fromAirport(airport: Airport) : AirportEntity{
             return AirportEntity(

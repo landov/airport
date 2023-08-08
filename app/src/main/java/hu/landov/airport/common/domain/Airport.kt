@@ -1,8 +1,11 @@
 package hu.landov.airport.common.domain
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Airport (
     val code: String,
     val name: String,
@@ -17,4 +20,4 @@ data class Airport (
     val nvfr: Boolean,
     val ifr: Boolean,
     val windLink: String
-)
+) : Parcelable

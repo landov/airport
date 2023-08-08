@@ -37,7 +37,7 @@ class AirportListFragment : Fragment() {
         binding.airportListRecycler.adapter = adapter
         //TODO ezt átnézni
         lifecycleScope.launch {
-            viewModel.airportEntities.collect { airports ->
+            viewModel.airports.collect { airports ->
                 adapter.setAirports(airports)
             }
         }
