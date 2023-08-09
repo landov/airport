@@ -31,25 +31,24 @@ class AirportListFragment : Fragment() {
     private val adapter =
         AirportListAdapter(mutableListOf()) { airport -> navigateToDetails(airport) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentAirportListBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.airportListRecycler.adapter = adapter
-        //TODO ezt átnézni
         lifecycleScope.launch {
             viewModel.airports.collect { airports ->
                 adapter.setAirports(airports)
             }
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return binding.root
     }
-    
 
     private fun navigateToDetails(airport: Airport) {
         Log.d("LISTFRAGEMNT", "${airport.code} clicked!")
