@@ -49,6 +49,7 @@ class AirportListFragment : Fragment() {
     ): View? {
         return binding.root
     }
+    
 
     private fun navigateToDetails(airport: Airport) {
         Log.d("LISTFRAGEMNT", "${airport.code} clicked!")

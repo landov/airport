@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import hu.landov.airport.common.data.AirportEntity
 import hu.landov.airport.common.domain.Airport
 import hu.landov.airport.databinding.FragmentAirportDetailsBinding
+import kotlin.concurrent.timer
 
 /**
  * A simple [Fragment] subclass.
@@ -37,7 +38,7 @@ class AirportDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        binding.lifecycleOwner = viewLifecycleOwner
         // Inflate the layout for this fragment
         return binding.root
     }
