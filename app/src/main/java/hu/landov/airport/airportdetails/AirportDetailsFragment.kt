@@ -1,10 +1,13 @@
 package hu.landov.airport.airportdetails
 
+import android.content.Context
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -24,13 +27,15 @@ class AirportDetailsFragment : Fragment() {
     private lateinit var binding : FragmentAirportDetailsBinding
     private val args : AirportDetailsFragmentArgs by navArgs()
     private lateinit var airport : Airport
+    private lateinit var locationManager: LocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         airport = args.airport
-        viewModel = ViewModelProvider(this,AirportDetailsViewModelFactory(airport)).get(AirportDetailsViewModel::class.java)
-        binding = FragmentAirportDetailsBinding.inflate(layoutInflater)
-        binding.viewModel = viewModel
+        locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        viewModel = ViewModelProvider(this,AirportDetailsViewModelFactory(airport,locationManager)).get(AirportDetailsViewModel::class.java)
+
+
         Log.d("DETAILS", airport.toString())
     }
 
@@ -38,9 +43,14 @@ class AirportDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding.lifecycleOwner = viewLifecycleOwner
-        // Inflate the layout for this fragment
+        binding = FragmentAirportDetailsBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
     }
 
 }

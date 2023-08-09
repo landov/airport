@@ -28,8 +28,6 @@ class AirportListFragment : Fragment() {
 
     private lateinit var binding: FragmentAirportListBinding
     private val viewModel: AirportListViewModel by viewModels()
-    private val adapter =
-        AirportListAdapter(mutableListOf()) { airport -> navigateToDetails(airport) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +37,12 @@ class AirportListFragment : Fragment() {
         return binding.root
     }
 
+    //TODO move setups to functions
+    //TODO  viewLifecycleOwner.lifecycleScope + viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adapter =
+            AirportListAdapter(mutableListOf()) { airport -> navigateToDetails(airport) }
         binding.airportListRecycler.adapter = adapter
         lifecycleScope.launch {
             viewModel.airports.collect { airports ->

@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+//TODO UI models for views?
+//TODO latitude/longitude be Double!
 @Parcelize
 data class Airport (
     val code: String,
