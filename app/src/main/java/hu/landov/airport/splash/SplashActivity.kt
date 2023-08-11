@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
         )
         supportActionBar?.hide()
 
+        //TODO why is it here?
         if (ActivityCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION

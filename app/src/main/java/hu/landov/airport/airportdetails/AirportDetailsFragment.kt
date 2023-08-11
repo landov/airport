@@ -34,8 +34,6 @@ class AirportDetailsFragment : Fragment() {
         airport = args.airport
         locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         viewModel = ViewModelProvider(this,AirportDetailsViewModelFactory(airport,locationManager)).get(AirportDetailsViewModel::class.java)
-
-
         Log.d("DETAILS", airport.toString())
     }
 
