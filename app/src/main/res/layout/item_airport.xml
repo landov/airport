@@ -6,7 +6,7 @@
     <data>
         <variable
             name="airport"
-            type="hu.landov.airport.common.domain.Airport" />
+            type="hu.landov.airport.common.domain.airport.Airport" />
 
     </data>
 

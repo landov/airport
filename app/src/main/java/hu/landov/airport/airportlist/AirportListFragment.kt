@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import hu.landov.airport.common.data.AirportEntity
-import hu.landov.airport.common.domain.Airport
+import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.databinding.FragmentAirportListBinding
 import kotlinx.coroutines.launch
 

@@ -6,16 +6,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hu.landov.airport.AirportApplication
-import hu.landov.airport.common.data.AirportDatabase
-import hu.landov.airport.common.data.AirportEntity
-import hu.landov.airport.util.fromString
+import hu.landov.airport.common.domain.airport.Airport
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStream
 import java.util.*
 
-//TODO Inject Context or Dao/Repo
+//TODO Inject Repo
 class SplashViewModel(val app: Application) : AndroidViewModel(app) {
 
     val repository = (app as AirportApplication).getAirportRepository()
@@ -40,7 +38,7 @@ class SplashViewModel(val app: Application) : AndroidViewModel(app) {
             val scanner = Scanner(ist)
             while(scanner.hasNextLine()){
                 val line = scanner.nextLine()
-                val airport = fromString(line)
+                val airport = Airport.fromString(line)
                 repository.addAirport(airport)
                 Log.d("SPLASH", "$airport");
             }

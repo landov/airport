@@ -3,7 +3,7 @@ package hu.landov.airport.airportlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hu.landov.airport.common.domain.Airport
+import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.databinding.ItemAirportBinding
 
 class AirportListAdapter(

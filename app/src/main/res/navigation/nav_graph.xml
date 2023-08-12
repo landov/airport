@@ -19,6 +19,6 @@
         android:label="AirportDetailsFragment" >
         <argument
             android:name="airport"
-            app:argType="hu.landov.airport.common.domain.Airport" />
+            app:argType="hu.landov.airport.common.domain.airport.Airport" />
     </fragment>
 </navigation>

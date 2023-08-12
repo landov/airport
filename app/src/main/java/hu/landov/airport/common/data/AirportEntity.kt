@@ -1,11 +1,9 @@
 package hu.landov.airport.common.data
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import hu.landov.airport.common.domain.Airport
-import kotlinx.parcelize.Parcelize
+import hu.landov.airport.common.domain.airport.Airport
 
 @Entity(tableName = "airport")
 

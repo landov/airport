@@ -1,8 +1,8 @@
 package hu.landov.airport.common.data
 
 import android.app.Application
-import hu.landov.airport.common.domain.Airport
-import hu.landov.airport.common.domain.AirportRepository
+import hu.landov.airport.common.domain.airport.Airport
+import hu.landov.airport.common.domain.airport.AirportRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import kotlin.streams.toList

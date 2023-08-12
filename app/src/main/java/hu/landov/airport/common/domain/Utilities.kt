@@ -1,43 +1,9 @@
 package hu.landov.airport.util
 
-import hu.landov.airport.common.data.AirportEntity
-import hu.landov.airport.common.domain.Airport
+import hu.landov.airport.common.domain.airport.Airport
 import kotlin.streams.toList
 
-fun fromString(line: String): Airport {
 
-    val items = line.split(";")
-    val code = items[0]
-    val name = items[1]
-    val location = items[2]
-    val longitude = getLongLat(items[3])
-    val latitude = getLongLat(items[4])
-    val elevation = items[5].toInt()
-    val callSign = items[6]
-    val frequencies = items[7].split(":").stream().map { s -> s.toFloat() }.toList()
-    val trafficPattern = items[8]
-    val hours = items[9].split(";").toList()
-
-    val nvfr = items[10].toBoolean()
-    val ifr = items[11].toBoolean()
-    val link = items[12]
-
-    return Airport(
-        code,
-        name,
-        location,
-        longitude,
-        latitude,
-        elevation,
-        callSign,
-        frequencies,
-        trafficPattern,
-        hours,
-        nvfr,
-        ifr,
-        link
-    )
-}
 
 
 /**
