@@ -55,7 +55,7 @@ class IdokepWindStateProvider : WindStateProvider {
                     socket?.connect()
                 } catch (e: MalformedURLException) {
                     //TODO handle
-                    throw WindStateException("Mailformed url:${uri.toString()}")
+                    throw WindStateException("Mailformed url:${uri.toString()}", e)
                 }
             }
         }
