@@ -48,16 +48,6 @@ class AirportDetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.onStart()
-    }
-
-    override fun onPause() {
-        viewModel.onStop()
-        super.onPause()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
