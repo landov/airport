@@ -23,13 +23,14 @@ import javax.net.ssl.*
 
 const val SOCKET_EVENT_W = "w"
 
-@Singleton
 class IdokepWindStateProvider @Inject constructor() : WindStateProvider {
 
     private val TAG = "IdokepWindStateProvider"
     private var airport: Airport? = null
     private val windStateLiveData = MutableLiveData<WindState>()
     private var socket: Socket? = null
+
+    init {Log.d(TAG,": $this")}
 
     override fun getWindState(airport: Airport): LiveData<WindState> {
         this.airport = airport
@@ -55,7 +56,7 @@ class IdokepWindStateProvider @Inject constructor() : WindStateProvider {
                             strings[0].toDouble(),
                             strings[1].toDouble()
                         )
-                        Log.d(TAG, "recived: $windState $socket")
+                        //Log.d(TAG, "recived: $windState $socket")
                         windStateLiveData.postValue(windState)
                     }
 

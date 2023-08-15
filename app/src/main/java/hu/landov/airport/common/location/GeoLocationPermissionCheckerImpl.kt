@@ -3,9 +3,11 @@ package hu.landov.airport.common.location
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.content.ContextCompat
 
 class GeoLocationPermissionCheckerImpl(val context: Context) : GeoLocationPermissionChecker{
+
     override val isPermissionGiven: Boolean
         get() = ContextCompat.checkSelfPermission(
             context,

@@ -1,24 +1,20 @@
 package hu.landov.airport.airportdetails
 
 import android.content.Context
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import hu.landov.airport.common.di.DaggerAppComponent
-import hu.landov.airport.common.di.LOCATION_MANAGER
-import hu.landov.airport.common.di.ProviderModule
+import hu.landov.airport.activityComp
+import hu.landov.airport.appComp
 
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.common.domain.location.LocationStateProvider
 import hu.landov.airport.common.domain.wind.WindStateProvider
-import hu.landov.airport.comp
 import hu.landov.airport.databinding.FragmentAirportDetailsBinding
 import javax.inject.Inject
 
@@ -33,10 +29,15 @@ class AirportDetailsFragment : Fragment() {
     @Inject
     lateinit var locationStateProvider: LocationStateProvider
 
+    override fun onAttach(context: Context) {
+        context.activityComp
+            ?.fragmentComponent()
+            ?.inject(this)
+        super.onAttach(context)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         airport = args.airport
-        context?.comp?.inject(this)
         viewModel =
             ViewModelProvider(
                 this, AirportDetailsViewModelFactory(airport, locationStateProvider, windStateProvider)
