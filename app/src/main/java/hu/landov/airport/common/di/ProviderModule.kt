@@ -14,20 +14,20 @@ import hu.landov.airport.common.providers.GpsLocationStateProvider
 import hu.landov.airport.common.providers.IdokepWindStateProvider
 
 @Module(includes = [ProviderModule.Bindings::class])
-class ProviderModule(private val context : Context) {
+class ProviderModule() {
 
     @Provides
-    fun provideLocationManager() : LocationManager {
+    fun provideLocationManager(context: Context) : LocationManager {
         return context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
 
     @Provides
-    fun provideGeoLocationPermissionChecker() : GeoLocationPermissionChecker{
+    fun provideGeoLocationPermissionChecker(context: Context) : GeoLocationPermissionChecker{
         return GeoLocationPermissionCheckerImpl(context)
     }
 
     @Provides
-    fun provideGpsLocationStateProwider() : LocationStateProvider{
+    fun provideGpsLocationStateProwider(context: Context) : LocationStateProvider{
         return GpsLocationStateProvider(
             context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         )

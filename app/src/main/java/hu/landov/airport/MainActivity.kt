@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         comp = DaggerAppComponent
             .builder()
-            .providerModule(ProviderModule(this))
+            .context(this)
             .build().apply {
                 inject(this@MainActivity)
             }
