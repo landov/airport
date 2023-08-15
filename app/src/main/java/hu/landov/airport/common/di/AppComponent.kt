@@ -1,6 +1,9 @@
 package hu.landov.airport.common.di
 
 import dagger.Component
+import hu.landov.airport.MainActivity
+import hu.landov.airport.airportdetails.AirportDetailsFragment
+import hu.landov.airport.airportdetails.AirportDetailsViewModel
 import hu.landov.airport.common.domain.wind.WindStateProvider
 import javax.inject.Singleton
 
@@ -8,11 +11,14 @@ import javax.inject.Singleton
 
 @Component(
     modules = [
-        AppModule::class,
-        ContextModule::class
+        ProviderModule::class
     ]
 )
 @Singleton
 interface AppComponent {
-    fun windStateProvider(): WindStateProvider
+    //fun windStateProvider(): WindStateProvider
+
+    fun inject(detailsFragment: AirportDetailsFragment)
+
+    fun inject(activity: MainActivity)
 }

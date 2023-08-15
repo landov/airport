@@ -11,11 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import hu.landov.airport.common.di.DaggerAppComponent
 import hu.landov.airport.common.di.LOCATION_MANAGER
+import hu.landov.airport.common.di.ProviderModule
 
 import hu.landov.airport.common.domain.airport.Airport
+import hu.landov.airport.common.domain.location.LocationStateProvider
+import hu.landov.airport.common.domain.wind.WindStateProvider
+import hu.landov.airport.comp
 import hu.landov.airport.databinding.FragmentAirportDetailsBinding
-import hu.landov.airport.lookup
+import javax.inject.Inject
 
 
 class AirportDetailsFragment : Fragment() {
@@ -23,17 +28,18 @@ class AirportDetailsFragment : Fragment() {
     private lateinit var binding: FragmentAirportDetailsBinding
     private val args: AirportDetailsFragmentArgs by navArgs()
     private lateinit var airport: Airport
-    //private lateinit var locationManager: LocationManager
+    @Inject
+    lateinit var windStateProvider: WindStateProvider
+    @Inject
+    lateinit var locationStateProvider: LocationStateProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         airport = args.airport
-        val locationManager: LocationManager =
-            (activity as AppCompatActivity).lookup(LOCATION_MANAGER)
-        //locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        context?.comp?.inject(this)
         viewModel =
             ViewModelProvider(
-                this, AirportDetailsViewModelFactory(airport, locationManager)
+                this, AirportDetailsViewModelFactory(airport, locationStateProvider, windStateProvider)
             ).get(
                 AirportDetailsViewModel::class.java
             )

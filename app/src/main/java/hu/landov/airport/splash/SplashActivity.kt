@@ -22,20 +22,11 @@ class SplashActivity : AppCompatActivity() {
 
     private val viewModel: SplashViewModel by viewModels()
 
-    private val permissionChecker = object : GeoLocationPermissionChecker {
-        override val isPermissionGiven: Boolean
-            get() = ContextCompat.checkSelfPermission(
-                this@SplashActivity,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         makeFullScreen()
         setContentView(R.layout.activity_splash)
         setupObservers()
-
     }
 
     private fun makeFullScreen() {

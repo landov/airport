@@ -1,6 +1,7 @@
 package hu.landov.airport
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -15,31 +16,38 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import hu.landov.airport.common.di.GEO_PERMISSION_CHECKER
+import hu.landov.airport.common.di.*
 import hu.landov.airport.common.location.GeoLocationPermissionChecker
 import hu.landov.airport.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var permissionChecker: GeoLocationPermissionChecker
+
+    @Inject
+    lateinit var permissionChecker: GeoLocationPermissionChecker
+    lateinit var comp: AppComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //TODO remove ?
-        permissionChecker = lookup(GEO_PERMISSION_CHECKER)
-        //TODO remove
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        comp = DaggerAppComponent
+            .builder()
+            .providerModule(ProviderModule(this))
+            .build().apply {
+                inject(this@MainActivity)
+            }
         checkPermission()
     }
 
-    private fun checkPermission(){
-        if(!permissionChecker.isPermissionGiven){
-            Log.e("SPLASH","Request premisson!")
+    private fun checkPermission() {
+        if (!permissionChecker.isPermissionGiven) {
+            Log.e("SPLASH", "Request premisson!")
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(
@@ -49,8 +57,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
-
-
-
 }
+
+val Context.comp: AppComponent?
+    get() = if (this is MainActivity) comp else null
