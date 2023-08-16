@@ -10,9 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.android.support.AndroidSupportInjection
-import hu.landov.airport.activityComp
-import hu.landov.airport.appComp
-
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.common.domain.location.LocationStateProvider
 import hu.landov.airport.common.domain.wind.WindStateProvider

@@ -1,4 +1,4 @@
-package hu.landov.airport.common.di.activities.main
+package hu.landov.airport.common.di.activities
 
 import dagger.Module
 

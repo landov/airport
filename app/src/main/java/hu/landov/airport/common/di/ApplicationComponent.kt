@@ -4,27 +4,22 @@ import android.app.Application
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjector
 import hu.landov.airport.AirportApplication
-import hu.landov.airport.MainActivity
-import hu.landov.airport.airportdetails.AirportDetailsFragment
-import hu.landov.airport.common.di.activities.main.MainActivityModule
 import hu.landov.airport.common.di.scopes.ApplicationScope
-import hu.landov.airport.common.location.GeoLocationPermissionChecker
-import hu.landov.airport.common.location.GeoLocationPermissionCheckerImpl
-import javax.inject.Singleton
 
 //TODO Qualifiers and a generic interface for providers
 
 @Component(
     modules = [
         ApplicationModule::class,
-        MainActivityModule::class
+        ActivityBindingModule::class
     ]
 )
 @ApplicationScope
-interface ApplicationComponent {
+interface ApplicationComponent : AndroidInjector<AirportApplication> {
 
-    fun inject(application: AirportApplication)
+
 
     @Component.Factory
     interface Factory {
