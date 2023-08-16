@@ -7,31 +7,34 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.app.ActivityCompat
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import hu.landov.airport.common.di.*
 import hu.landov.airport.common.location.GeoLocationPermissionChecker
 import hu.landov.airport.databinding.ActivityMainBinding
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
 
     private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var permissionChecker: GeoLocationPermissionChecker
-    lateinit var comp: ActivityComponent
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        comp = application.appComp
-            .activityComponentFactory()
-            .create(this).apply {
-                inject(this@MainActivity)
-            }
+
         checkPermission()
     }
 
@@ -49,5 +52,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-val Context.activityComp: ActivityComponent?
-    get() = if (this is MainActivity) comp else null

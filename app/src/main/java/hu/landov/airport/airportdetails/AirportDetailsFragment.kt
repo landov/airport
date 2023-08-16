@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import dagger.android.support.AndroidSupportInjection
 import hu.landov.airport.activityComp
 import hu.landov.airport.appComp
 
@@ -30,9 +31,7 @@ class AirportDetailsFragment : Fragment() {
     lateinit var locationStateProvider: LocationStateProvider
 
     override fun onAttach(context: Context) {
-        context.activityComp
-            ?.fragmentComponent()
-            ?.inject(this)
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
     override fun onCreate(savedInstanceState: Bundle?) {

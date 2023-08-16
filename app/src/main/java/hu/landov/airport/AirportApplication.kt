@@ -2,23 +2,33 @@ package hu.landov.airport
 
 import android.app.Application
 import android.content.Context
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import hu.landov.airport.common.data.RoomAirportRepository
 import hu.landov.airport.common.di.ApplicationComponent
 import hu.landov.airport.common.di.DaggerApplicationComponent
 import hu.landov.airport.common.domain.airport.AirportRepository
+import javax.inject.Inject
 
-class AirportApplication : Application() {
+class AirportApplication : Application(), HasAndroidInjector {
 
-    lateinit var appComponent: ApplicationComponent
-    //TODO this shoud be injected as well
+
+    //TODO this shoud be injected as well?
     private var REPO_INSTANCE: AirportRepository? = null
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerApplicationComponent
+        DaggerApplicationComponent
             .factory()
             .create(this)
+            .inject(this)
+    }
 
+    override fun androidInjector(): AndroidInjector<Any>{
+        return dispatchingAndroidInjector
     }
 
     fun getAirportRepository(): AirportRepository {
@@ -30,6 +40,4 @@ class AirportApplication : Application() {
     }
 }
 
-val Context.appComp: ApplicationComponent
-get() = (applicationContext as AirportApplication).appComponent
 
