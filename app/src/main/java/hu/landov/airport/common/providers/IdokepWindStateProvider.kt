@@ -15,10 +15,8 @@ import java.net.MalformedURLException
 import java.net.URI
 import java.security.cert.X509Certificate
 import java.util.*
-
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Singleton
 import javax.net.ssl.*
 
 const val SOCKET_EVENT_W = "w"
@@ -56,7 +54,7 @@ class IdokepWindStateProvider @Inject constructor() : WindStateProvider {
                             strings[0].toDouble(),
                             strings[1].toDouble()
                         )
-                        Log.d(TAG, "recived: $windState $socket")
+                     //   Log.d(TAG, "recived: $windState $socket")
                         windStateLiveData.postValue(windState)
                     }
 

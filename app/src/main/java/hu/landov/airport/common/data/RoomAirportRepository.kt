@@ -1,13 +1,14 @@
 package hu.landov.airport.common.data
 
-import android.app.Application
+import android.content.Context
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.common.domain.airport.AirportRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
+import javax.inject.Inject
 import kotlin.streams.toList
 
-class RoomAirportRepository(app: Application) : AirportRepository {
+class RoomAirportRepository @Inject constructor(app: Context) : AirportRepository {
 
     private val database = AirportDatabase.getDatabase(app)
     private val dao = database.airportDao()

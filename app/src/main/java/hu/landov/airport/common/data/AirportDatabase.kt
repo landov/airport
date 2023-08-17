@@ -19,7 +19,7 @@ abstract class AirportDatabase : RoomDatabase() {
         fun getDatabase(context: Context) : AirportDatabase {
             return INSTANCE ?:synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     AirportDatabase::class.java,
                     "airport_database"
                 ).fallbackToDestructiveMigration()

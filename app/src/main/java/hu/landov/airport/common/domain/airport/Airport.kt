@@ -1,14 +1,10 @@
 package hu.landov.airport.common.domain.airport
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
 import hu.landov.airport.util.getLongLat
 import kotlinx.parcelize.Parcelize
 import kotlin.streams.toList
 
-//TODO UI models for views?
-//TODO latitude/longitude be Double!
 @Parcelize
 data class Airport (
     val code: String,

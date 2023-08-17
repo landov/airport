@@ -1,14 +1,5 @@
 package hu.landov.airport.util
 
-import hu.landov.airport.common.domain.airport.Airport
-import kotlin.streams.toList
-
-
-
-
-/**
- *
- */
 fun getLongLat(stringLongLat: String): Float {
     if (stringLongLat.length != 8) throw java.lang.IllegalArgumentException("Mailformed Longitude/Latitude")
     val signString = stringLongLat.substring(0, 1);

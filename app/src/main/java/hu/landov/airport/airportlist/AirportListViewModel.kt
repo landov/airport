@@ -1,13 +1,11 @@
 package hu.landov.airport.airportlist
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import hu.landov.airport.AirportApplication
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import hu.landov.airport.common.domain.airport.AirportRepository
+import javax.inject.Inject
 
-class AirportListViewModel(app: Application) : AndroidViewModel(app) {
-
-    private val repo = (app as AirportApplication).getAirportRepository()
-
-    val airports = repo.getAirports()
-
+@HiltViewModel
+class AirportListViewModel @Inject constructor(val repository: AirportRepository) : ViewModel() {
+    val airports = repository.getAirports()
 }

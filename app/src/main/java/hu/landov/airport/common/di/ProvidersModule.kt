@@ -1,25 +1,24 @@
-package hu.landov.airport.common.di.fragments
+package hu.landov.airport.common.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import hu.landov.airport.common.domain.location.LocationStateProvider
 import hu.landov.airport.common.domain.wind.WindStateProvider
 import hu.landov.airport.common.providers.GpsLocationStateProvider
 import hu.landov.airport.common.providers.IdokepWindStateProvider
-import javax.inject.Singleton
 
 @Module
-@InstallIn(FragmentComponent::class)
-interface FragmentModule{
+@InstallIn(ViewModelComponent::class)
+interface ProvidersModule{
     @Binds
-    @FragmentScoped
+    @ViewModelScoped
     fun bindWindStateProvider(impl: IdokepWindStateProvider): WindStateProvider
 
     @Binds
-    @FragmentScoped
+    @ViewModelScoped
     fun bindLocationStateProvider(impl: GpsLocationStateProvider): LocationStateProvider
 }
 

@@ -1,4 +1,4 @@
-package hu.landov.airport.common.di.activities
+package hu.landov.airport.common.di
 
 import android.content.Context
 import dagger.Module
@@ -12,7 +12,7 @@ import hu.landov.airport.common.location.GeoLocationPermissionCheckerImpl
 
 @Module
 @InstallIn(ActivityComponent::class)
-object ActivityModule{
+object LocationModule{
     @Provides
     @ActivityScoped
     fun provideGeoLocationPermissionChecker(@ActivityContext context : Context): GeoLocationPermissionChecker {

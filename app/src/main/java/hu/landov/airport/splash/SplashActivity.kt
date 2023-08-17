@@ -1,23 +1,20 @@
 package hu.landov.airport.splash
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import dagger.hilt.android.AndroidEntryPoint
 import hu.landov.airport.MainActivity
 import hu.landov.airport.R
-import hu.landov.airport.common.location.GeoLocationPermissionChecker
 
 //TODO investigate and remove customSplashscreen
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private val viewModel: SplashViewModel by viewModels()

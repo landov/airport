@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.databinding.FragmentAirportListBinding
 import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AirportListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class AirportListFragment : Fragment() {
 
     private lateinit var binding: FragmentAirportListBinding
@@ -32,7 +29,6 @@ class AirportListFragment : Fragment() {
     }
 
     //TODO move setups to functions
-    //TODO  viewLifecycleOwner.lifecycleScope + viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter =
@@ -43,7 +39,6 @@ class AirportListFragment : Fragment() {
                 adapter.setAirports(airports)
             }
         }
-
     }
 
     private fun navigateToDetails(airport: Airport) {

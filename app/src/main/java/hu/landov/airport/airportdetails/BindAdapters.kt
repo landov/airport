@@ -1,6 +1,5 @@
 package hu.landov.airport.airportdetails
 
-import android.util.Log
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import hu.landov.airport.common.domain.location.LocationState

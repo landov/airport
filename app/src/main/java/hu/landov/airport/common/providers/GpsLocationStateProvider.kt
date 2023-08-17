@@ -11,12 +11,10 @@ import androidx.lifecycle.MutableLiveData
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.common.domain.location.LocationStateProvider
 import hu.landov.airport.common.domain.location.LocationState
-import hu.landov.airport.common.domain.wind.WindState
 import hu.landov.airport.util.calcDirection
 import hu.landov.airport.util.calcDistance
 import javax.inject.Inject
 
-//TODO loactionManager to be injected
 class GpsLocationStateProvider @Inject constructor (val locationManager: LocationManager) : LocationStateProvider {
 
     private val TAG = "GpsLocationStateProvider"

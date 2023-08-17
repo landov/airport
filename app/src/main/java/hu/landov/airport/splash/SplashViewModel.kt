@@ -2,41 +2,46 @@ package hu.landov.airport.splash
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import hu.landov.airport.AirportApplication
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import hu.landov.airport.common.domain.airport.Airport
+import hu.landov.airport.common.domain.airport.AirportRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStream
 import java.util.*
+import javax.inject.Inject
 
-//TODO Inject Repo
-class SplashViewModel(val app: Application) : AndroidViewModel(app) {
+@HiltViewModel
+class SplashViewModel @Inject constructor(
+    val repository: AirportRepository,
+    val application: Application
+) : ViewModel() {
 
-    val repository = (app as AirportApplication).getAirportRepository()
+
     private var _proceed = MutableLiveData<Boolean>(false)
-    val proceed : LiveData<Boolean>
-    get() = _proceed
+    val proceed: LiveData<Boolean>
+        get() = _proceed
 
     init {
         loadDatabase()
     }
 
-    fun loadDatabase(){
+    fun loadDatabase() {
         CoroutineScope(Dispatchers.IO).launch {
 
-            val ist: InputStream = app.resources.openRawResource(
-                app.resources.getIdentifier(
+            val ist: InputStream = application.resources.openRawResource(
+                application.resources.getIdentifier(
                     "airports",
                     "raw",
-                    app.packageName
+                    application.packageName
                 )
             )
             val scanner = Scanner(ist)
-            while(scanner.hasNextLine()){
+            while (scanner.hasNextLine()) {
                 val line = scanner.nextLine()
                 val airport = Airport.fromString(line)
                 repository.addAirport(airport)
