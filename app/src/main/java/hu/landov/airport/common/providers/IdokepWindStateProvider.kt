@@ -56,7 +56,7 @@ class IdokepWindStateProvider @Inject constructor() : WindStateProvider {
                             strings[0].toDouble(),
                             strings[1].toDouble()
                         )
-                        //Log.d(TAG, "recived: $windState $socket")
+                        Log.d(TAG, "recived: $windState $socket")
                         windStateLiveData.postValue(windState)
                     }
 

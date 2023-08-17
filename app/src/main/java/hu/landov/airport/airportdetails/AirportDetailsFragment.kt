@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 import hu.landov.airport.common.domain.airport.Airport
 import hu.landov.airport.common.domain.location.LocationStateProvider
 import hu.landov.airport.common.domain.wind.WindStateProvider
@@ -17,6 +18,7 @@ import hu.landov.airport.databinding.FragmentAirportDetailsBinding
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class AirportDetailsFragment : Fragment() {
     private lateinit var viewModel: AirportDetailsViewModel
     private lateinit var binding: FragmentAirportDetailsBinding
@@ -27,10 +29,6 @@ class AirportDetailsFragment : Fragment() {
     @Inject
     lateinit var locationStateProvider: LocationStateProvider
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         airport = args.airport
